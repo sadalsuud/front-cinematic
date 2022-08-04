@@ -1,0 +1,73 @@
+<div style="padding: 25px">
+
+  <p-table [value]="cinematic.cines" responsiveLayout="scroll">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        Cines
+        <p-button icon="pi pi-plus" label="Crear" (click)="cinematic.verFormCine=true"></p-button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>id</th>
+        <th>nombre</th>
+        <th>representante</th>
+        <th>Teléfono</th>
+        <th>Dirección</th>
+        <th>Ciudad</th>
+        <th>Opciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cine>
+      <tr>
+        <td>{{cine.id}}</td>
+        <td><a href="{{cine.web}}">{{cine.nombre}}</a></td>
+        <td>{{cine.representante}}</td>
+        <td>{{cine.telefono}}</td>
+        <td>{{cine.direccion}}</td>
+        <td>{{cine.ciudad.nombre}}</td>
+        <td>
+            <i class="pi pi-pencil" (click)="cinematic.llenar_form_cine(cine); cinematic.verFormCine = true" style="padding-right: 15px"></i>
+            <i class="pi pi-trash" (click)="cinematic.llenar_form_cine(cine); cinematic.verFormCine = true"></i>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog header="Title" [(visible)]="cinematic.verFormCine" [modal]="true" [baseZIndex]="-100" style="flex: auto">
+  <form [formGroup]="cinematic.form_cine">
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Representante</mat-label>
+      <input matInput formControlName="representante">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Teléfono</mat-label>
+      <input matInput formControlName="telefono">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Sitio web</mat-label>
+      <input matInput formControlName="web">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Dirección</mat-label>
+      <input matInput formControlName="direccion">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Ciudad</mat-label>
+      <mat-select formControlName="ciudad_id">
+        <mat-option *ngFor="let ciudad of cinematic.ciudades" value="{{ciudad.id}}">{{ciudad.nombre}}</mat-option>
+<!--        <button (click)="confirm()" pButton icon="pi pi-check" label="Confirm"></button>-->
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <ng-template pTemplate="footer">
+    <button mat-button color="primary" (click)="guardar()">Guardar</button>
+  </ng-template>
+</p-dialog>
+
+<!--<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>-->

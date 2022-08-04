@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>CinemaTIC</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [routerLink]="'/cine'">
+    <mat-icon>camera_indoor</mat-icon>
+    <span>Gestión de cine </span>
+  </button>
+  <button mat-menu-item [routerLink]="'/sala'">
+    <mat-icon>theaters</mat-icon>
+    <span>Gestión de salas</span>
+  </button>
+  <button mat-menu-item [routerLink]="'/pelicula'">
+    <mat-icon>movie</mat-icon>
+    <span>Gestión de películas</span>
+  </button>
+  <button mat-menu-item [routerLink]="'/usuario'">
+    <mat-icon>manage_accounts</mat-icon>
+    <span>Gestión de usuarios</span>
+  </button>
+</mat-menu>
+
